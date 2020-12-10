@@ -1,0 +1,9 @@
+﻿{
+  "name": "inl-mning2nodejs",
+  "version": "0.0.0",
+  "description": "Inlämning2nodejs",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  }
+}
