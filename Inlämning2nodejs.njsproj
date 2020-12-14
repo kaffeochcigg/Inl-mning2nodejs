@@ -29,7 +29,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
-    <Content Include="jsCalc.hmtl" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="rokna.html" />

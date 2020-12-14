@@ -3,14 +3,6 @@ var http = require('http');
 var fs = require('fs');
 var url = require('url');
 
-function calcPage(res) {
-    fs.readFile('jsCalc.html', function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        return res.end();
-    });
-}
-
 function count(res) {
     fs.readFile('rokna.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -30,19 +22,25 @@ function computePage(adr, res) {
     res.write("</head>");
     res.write("<body>");
 
+    var oP = "";
     var X = q.query.x * 1, Y = q.query.y * 1, Z;
     switch (q.query.op) {
-        case "plus": Z = X + Y; break;
-        case "minus": Z = X - Y; break;
-        case "times": Z = X * Y; break;
-        case "div": Z = X / Y; break;
-    }
-    var oP = q.query.op
-    switch (q.query.op) {
-        case "plus": oP = "+"; break;
-        case "minus": oP = "-"; break;
-        case "times": oP = "*"; break;
-        case "div": oP = "/"; break;
+        case "plus":
+            oP = "+";
+            Z = X + Y;
+            break;
+        case "minus":
+            oP = "-";
+            Z = X - Y;
+            break;
+        case "times":
+            oP = "*";
+            Z = X * Y;
+            break;
+        case "div":
+            oP = "/";
+            Z = X / Y;
+            break;
     }
 
     var expr = X + " " + oP + " " + Y + " = " + Z;
@@ -61,9 +59,6 @@ http.createServer(function (req, res) {
 
     if (req.url == "/") {
         count(res);
-    }
-    else if (req.url == "/calc") {
-        calcPage(res);
     }
     else if (p.pathname == "/compute") {
         computePage(req.url, res);
